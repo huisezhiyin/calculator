@@ -11,7 +11,9 @@ def calculator(team_list):
     # 列出所有可能的排名组合
     all_combination = list(permutations(team_list, 5))
     for combination in all_combination:
-        result_list.append(out_line(combination))
+        if out_line(combination):
+            result_list.append(out_line(combination))
+    print len(result_list)
     result_tuple = set(result_list)
     for team in result_tuple:
         # 此处保留两位小数
@@ -28,9 +30,11 @@ def calculator(team_list):
 
 def out_line(team_rank_tuple):
     # 出线计算器
-    team_points_dict = {}
     # 夏季赛排名状况
     team_rank_list = list(team_rank_tuple)
+    if (team_rank_list.index("ig")) == 4 or (team_rank_list.index("rw") == 4):
+        return None
+    team_points_dict = {}
     # 第一名直接出线
     first = team_rank_list[0]
     out_line_list = [first]

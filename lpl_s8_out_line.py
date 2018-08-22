@@ -5,14 +5,14 @@ spring_points_dict = {"ig": 30, "rng": 90, "rw": 50, "jdg": 0, "edg": 70, "*": 0
 summer_points_list = [90, 70, 50, 30, 10]
 
 
-def calculator(team_list):
+def calculator(team_list, team_summer_bottom):
     team_probability = {}
     result_list = []
     # 列出所有可能的排名组合
     all_combination = list(permutations(team_list, len(team_list)))
     for combination in all_combination:
         # 目前仅可以知晓ig rw不会低于前四
-        result_one = out_line(combination, {"ig": 4, "rw": 4})
+        result_one = out_line(combination, team_summer_bottom)
         if result_one:
             result_list.append(result_one)
     print len(result_list)
@@ -54,5 +54,6 @@ def out_line(team_rank_tuple, team_summer_bottom):
 
 
 if __name__ == '__main__':
-    team_list = ["ig", "rng", "rw", "jdg", "edg"]
-    calculator(team_list)
+    team_list = ["ig", "rng", "rw", "jdg", "edg", '*']
+    team_summer_bottom = {"ig": 4, "rw": 4}
+    calculator(team_list, team_summer_bottom)

@@ -9,7 +9,7 @@ def calculator(team_list):
     team_probability = {}
     result_list = []
     # 列出所有可能的排名组合
-    all_combination = list(permutations(team_list, 6))
+    all_combination = list(permutations(team_list, len(team_list)))
     for combination in all_combination:
         # 目前仅可以知晓ig rw不会低于前四
         result_one = out_line(combination, {"ig": 4, "rw": 4})
@@ -54,5 +54,5 @@ def out_line(team_rank_tuple, team_summer_bottom):
 
 
 if __name__ == '__main__':
-    team_list = ["ig", "rng", "rw", "jdg", "edg", "*"]
+    team_list = ["ig", "rng", "rw", "jdg", "edg"]
     calculator(team_list)
